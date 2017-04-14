@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h2>Clock</h2>
+  <p>.</p>
+
+  <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#clock">Clock</a></li>
+    <li><a data-toggle="tab" href="#timer">Timer</a></li>
+    <li><a data-toggle="tab" href="#stopwatch">StopWatch</a></li>
+    <li><a data-toggle="tab" href="#menu3">Menu 3</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div id="clock" class="tab-pane fade in active">
+      <h3>Clock</h3>
+      <p id ="currentTime"></p>
+        <script>
+            var variable = setInterval(displayTime, 1000);
+            
+            function addzero (m){
+                if(m < 10 ){
+                    m = '0'+m;
+                    return m;
+                }
+                return m;
+            }
+            function displayTime() {
+                        var d = new Date();
+                        var x = document.getElementById("currentTime");
+                        var hr = d.getHours();
+                        var min = d.getMinutes();
+                        var sec = d.getSeconds();
+                        hr = addzero(hr);
+                        min = addzero(min);
+                        sec = addzero(sec);
+                        x.innerHTML = hr + ":" + min + ":" + sec;
+            }
+
+        </script>
+
+    </div>
+    <div id="timer" class="tab-pane fade">
+      <h3>Timer</h3>
+      <button onclick="startTimer()">Start timer</button>
+        <p id ="Timer">hello</p>
+      <script>
+
+    var hr = 0,min = 0, sec = 0;
+    function startTimer(){
+        // incrementTime()
+        setInterval(incrementTime, 1000);
+    }
+    
+    function incrementTime(){
+        sec++;
+        if(sec == 60){
+            min++;
+            sec = 0;
+        }
+        if(min == 60){
+            hr++;
+        }
+        displayTimer();
+
+    }
+    function addzero (m){
+        
+        var len = m.toString().length;
+        if(len =='2')
+            return m;
+        if(m < 10 ){
+            m = '0'+m;
+            return m;
+
+        }
+        return m;
+            
+    }
+
+    function displayTimer() {
+                 var x = document.getElementById("Timer");
+                hr = addzero(hr);
+                min = addzero(min);
+                sec = addzero(sec);
+                x.innerHTML = hr + ":" + min + ":" + sec;
+    }
+
+</script>
+      <script>
+          document.write("Hello World!");
+        </script>
+
+      
+    </div>
+    <div id="stopwatch" class="tab-pane fade">
+      <h3>StopWatch</h3>
+      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+    </div>
+    <div id="menu3" class="tab-pane fade">
+      <h3>Menu 3</h3>
+      <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+    </div>
+  </div>
+</div>
+ <script>
+    var variable = setInterval(displayTime, 1000);
+    
+    function displayTime() {
+                var d = new Date();
+                var x = document.getElementById("currentTime");
+                var hr = d.getHours();
+                var min = d.getMinutes();
+                var sec = d.getSeconds();
+                hr = addzero(hr);
+                min = addzero(min);
+                sec = addzero(sec);
+                x.innerHTML = hr + ":" + min + ":" + sec;
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<html>
+	<head>
+		<title> Game </title>
+		<meta charset="utf-8">
+		  <meta name="viewport" content="width=device-width, initial-scale=1">
+		  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+		  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		  <script type="text/javascript">
+		  	var rd1, rd2, rd3, balance = 1000;
+		  	function hidedata()
+		  	{
+		  		document.getElementById("gameData").style.display = 'none';
+		  	}
+		  	function getstart()
+		  	{
+		  		balance -= 100;
+		  		document.getElementById("balance").innerText =  balance; 
+		  		document.getElementById("startGame").style.display = 'none';
+		  		document.getElementById("gameData").style.display = 'block';
+		  		game();
+		  	}
+		  	function generaterandom()
+		  	{
+		  		// rd1 = Math.floor(Math.random()*10);
+		  		// rd2 = Math.floor(Math.random()*10);
+		  		// rd3 = Math.floor(Math.random()*10);
+				rd1 = 1;
+		  		rd2 = 1;
+		  		rd3 = 1;
+
+		  		document.getElementById("number").innerText = ' The new Numbers are '+rd1 +" ,"+rd2 +" and "+rd3 +" ."
+
+		  	}
+		  	function sequence()
+		  	{
+		  		if(rd1 > rd2 && rd1 < rd3)
+		  		{
+		  			if((rd1+1) == rd3 && (rd1-1) == rd2 ){
+		  				document.getElementById("status").innerText = " number are in sequence "+ rd2 + ", "+ rd1 + ", "+ rd3 + ". ";	
+		  				return true;
+		  			}
+		  		}
+		  		if(rd2 > rd1 && rd2 < rd3)
+		  		{
+		  			if((rd2+1) == rd3 && (rd2-1) == rd1 ){
+		  				document.getElementById("status").innerText = " number are in sequence "+ rd1 + ", "+ rd2 + ", "+ rd3 + ". ";	
+		  				return true;
+		  			}
+		  		}
+		  		if(rd3 > rd2 && rd3 < rd1)
+		  		{
+		  			if((rd3+1) == rd1 && (rd3-1) == rd2 ){
+		  				document.getElementById("status").innerText = " number are in sequence "+ rd2 + ", "+ rd3 + ", "+ rd1 + ". ";	
+		  				return true;
+		  			}
+		  		}
+		  		return false;
+		  	}
+		  	function check()
+		  	{
+		  		if(rd1 == rd2 == rd3){
+		  			document.getElementById("status").innerText = " all the number are equal and 1000 added to balance";
+		  			return 1000;
+		  		}
+		  		if((rd1 % 2 == 0) && (rd2 % 2 == 0) && (rd3 % 2 == 0)){
+		  			document.getElementById("status").innerText = " all the number are even and 300 added to balance";
+		  			return 300;
+		  		}
+		  		if((rd1 % 2 != 0) && (rd2 % 2 != 0) && (rd3 % 2 != 0)){
+		  			document.getElementById("status").innerText = " all the number are odd and 300 added to balance";
+		  			return 300;
+		  		}
+		  		if(sequence())
+		  			return 800;
+		  		document.getElementById("status").innerText = " No condition match else nothng added";
+		  		return 0;
+		  	}
+		  	function game()
+		  	{
+		  		 generaterandom(); 
+		  		 balance += check();
+
+		  		document.getElementById("balance").innerText =  balance; 
+		  	}
+		  </script>
+	</head>
+	<body onload="hidedata()">
+		<div class="container">
+			<h2> Game</h2>
+			<p>
+				Build a game in Javascript with following rules -
+				User has 1000 INR when he starts the game
+				Every try(click on start) is charged 100 INR
+				Game is over if user has less than 100 INR
+				Every try generates three random numbers, each random number is in 0-9 range
+				If all the numbers are odd/even (eg. 2 4 6), user gets 300 INR
+				If the numbers are in sequence with difference of 1 in any order (eg. 2 3 4 or 3 2 4 or 4 6 5), user gets 800 INR
+				If all the numbers are same (eg. 4 4 4), user gets 1000 INR
+				Else user gets no money.....
+				
+			</p>
+			<hr>
+			<div id="startGame">
+				<button type="button" class="btn btn-success" onclick="getstart()">Let's start</button>
+			</div>
+			<div id="gameData">
+				<div id="playmore">
+					<button type="button" class="btn btn-primary btn-lg" onclick="game()">Play More</button>
+				</div>
+				<h2>
+				<p id="number"></p>
+				<p id="status"></p>
+				
+				<strong>Remain Balance </strong> :- <span id="balance"></span></h2>
+			</div>	
+		</div>
+			
+	</body>
+</html>

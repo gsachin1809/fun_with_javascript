@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<button onclick="startTimer()">Try it</button>
+<button onclick="stopTimer()">Try it</button>
+<button onclick="resetTimer()">Try it</button>
+<p id ="currentTime">hello</p>
+<script>
+
+    var interval_id, hr = 0,min = 0, sec = 0 ;
+    function startTimer(){
+        // incrementTime()
+        interval_id = setInterval(incrementTime, 1000);
+    }
+    function stopTimer(){
+        
+        console.log("stip function");
+        clearInterval(interval_id);
+    }
+
+    function resetTimer(){
+        
+        console.log("stip function");
+        hr = min = sec = 0;
+        stopTimer();
+    }
+    
+    function incrementTime(){
+        sec++;
+        if(sec == 60){
+            min++;
+            sec = 0;
+        }
+        if(min == 60){
+            hr++;
+        }
+        displayTime();
+
+    }
+    function addzero (m){
+        
+        var len = m.toString().length;
+        if(len =='2')
+            return m;
+        if(m < 10 ){
+            m = '0'+m;
+            return m;
+
+        }
+        return m;
+            
+    }
+
+    function displayTime() {
+                 var x = document.getElementById("currentTime");
+                hr = addzero(hr);
+                min = addzero(min);
+                sec = addzero(sec);
+                x.innerHTML = hr + ":" + min + ":" + sec;
+    }
+
+</script>
+
+
+</body>
+</html>
